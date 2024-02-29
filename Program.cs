@@ -24,7 +24,8 @@
             CaricaVettori(ref voti, ref pesi, nVoti); //richiamo la funzione, adesso i valori di voti[] e pesi[] sono cambiati
             StampaVotiPesi(voti, pesi, nVoti);//stampo i voti e pesi generati casualmente
 
-            Console.WriteLine("Adesso verranno stampati i voti in posizione dispari e maggiori di 4"); //TODO: fixare
+            Console.WriteLine("Adesso verranno stampati i voti in posizione dispari e maggiori di 4");
+            Console.WriteLine("Voti  " + "  Pesi");
             StampaVotiDispariMaggiori4(ref voti, ref pesi, nVoti);
             StampaVotiPesi(voti, pesi, nVoti);
 
@@ -62,13 +63,13 @@
         }
         static void StampaVotiDispariMaggiori4(ref double[] voti, ref int[] pesi, int nVoti)
         {
-            for(int i = 0;i < nVoti; i++)//La posizione 0 dell'array la vediamo come 1
+            int pos;
+            for (int i = 0; i < nVoti; i += 2)//0 viene considerato 1, perché è come contiamo noi
             {
                 if (voti[i] > 4)
                 {
-                    voti[i] = voti[i - 1];
+                    Console.WriteLine(voti[i] + "       " + pesi[i]);//stampa i voti e pesi alla distanza di 7 spazi
                 }
-                i++;
             }
         }
         static double MediaPonderata(double[] voti, int[] pesi, int nVoti, ref double max, ref int posmax,ref double min, ref int posmin)
@@ -92,6 +93,13 @@
                 numeratore += voti[i] * pesi[i]; //qui sommo la moltiplicazione dei voti e pesi per ottenere il numeratore
             }
             return numeratore/ sommatoria;
+        }
+        static double ElencoVotiNellIntorno(double[] voti, int[] pesi, double votoUtente, int nVoti, int voto)
+        {
+            for(int i = 0;i < nVoti;i++)
+            {
+                if (voti[i] - 0.5 <)
+            }
         }
 
 
