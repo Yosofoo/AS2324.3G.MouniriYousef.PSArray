@@ -24,10 +24,21 @@
             CaricaVettori(ref voti, ref pesi, nVoti); //richiamo la funzione, adesso i valori di voti[] e pesi[] sono cambiati
             StampaVotiPesi(voti, pesi, nVoti);//stampo i voti e pesi generati casualmente
 
+            Console.WriteLine("Adesso verranno stampati i voti in posizione dispari e maggiori di 4"); //TODO: fixare
             StampaVotiDispariMaggiori4(ref voti, ref pesi, nVoti);
             StampaVotiPesi(voti, pesi, nVoti);
 
+            double max;//variabile per la funzione sotto
+            double min;//variabile per la funzione sotto
+            min = voti[0];
+            max = voti[0];
+            int posMax = 0;//variabile per la funzione sotto
+            int posMin = 0;//variabile per la funzione sotto
 
+            Console.WriteLine("Adesso verra calcolata la media ponderata, il voto massimo e la sua posizione e il voto minimo e la sua posizione");
+            double mediaPonderata = MediaPonderata(voti, pesi, nVoti,ref max,ref posMax , ref min, ref posMin);
+            Console.WriteLine($"Il voto più alto è {max}, in posizione {posMax}, il voto più basso è {min} in posizione {posMin}, la media ponderata di tutti i voti è {mediaPonderata}");
+            StampaVotiPesi(voti, pesi, nVoti);
 
         }
         static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
@@ -60,6 +71,29 @@
                 i++;
             }
         }
+        static double MediaPonderata(double[] voti, int[] pesi, int nVoti, ref double max, ref int posmax,ref double min, ref int posmin)
+        {
+            double sommatoria = 0;
+            double numeratore = 0;
+            
+            for (int i = 0; i < nVoti; i++)
+            {
+                if (voti[i] > max)
+                {
+                    max = voti[i];
+                    posmax = i;
+                }
+                if (voti[i] < min)
+                {
+                    min = voti[i];
+                    posmin = i;
+                }
+                sommatoria += pesi[i]; //sommo tutti i pesi per il denominatore
+                numeratore += voti[i] * pesi[i]; //qui sommo la moltiplicazione dei voti e pesi per ottenere il numeratore
+            }
+            return numeratore/ sommatoria;
+        }
+
 
     }
 }
