@@ -31,7 +31,7 @@
             Console.WriteLine("Voti  " + "  Pesi");
             for (int i = 0; i < voti.Length; i++)
             {
-                Console.WriteLine(voti[i] + "    " + pesi[i]);//stampa i voti e pesi alla distanza di 4 spazi
+                Console.WriteLine(voti[i] + "       " + pesi[i]);//stampa i voti e pesi alla distanza di 7 spazi
             }
         }
 
