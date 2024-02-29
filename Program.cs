@@ -97,7 +97,7 @@
             }
             return numeratore/ sommatoria;
         }
-        static double ElencoVotiNellIntorno(double[] voti, int[] pesi, double votoUtente, int nVoti, int voto)
+        static void ElencoVotiNellIntorno(double[] voti, int[] pesi, double votoUtente, int nVoti, int voto)
         {
             for(int i = 0;i < nVoti;i++)
             {
