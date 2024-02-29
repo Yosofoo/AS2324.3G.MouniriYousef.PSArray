@@ -19,9 +19,13 @@
                 pesi[i] = Convert.ToInt32(Console.ReadLine());
             }
             StampaVotiPesi(voti, pesi, nVoti); //richiamo la prima funzione per stampare i voti e pesi inseriti dall'utente
+            
             Console.WriteLine("Adesso verranno caricati dei voti e pesi casuali");
             CaricaVettori(ref voti, ref pesi, nVoti); //richiamo la funzione, adesso i valori di voti[] e pesi[] sono cambiati
             StampaVotiPesi(voti, pesi, nVoti);//stampo i voti e pesi generati casualmente
+
+            StampaVotiDispariMaggiori4(ref voti, ref pesi, nVoti);
+            StampaVotiPesi(voti, pesi, nVoti);
 
 
 
@@ -45,5 +49,17 @@
 
             }
         }
+        static void StampaVotiDispariMaggiori4(ref double[] voti, ref int[] pesi, int nVoti)
+        {
+            for(int i = 0;i < nVoti; i++)//La posizione 0 dell'array la vediamo come 1
+            {
+                if (voti[i] > 4)
+                {
+                    voti[i] = voti[i - 1];
+                }
+                i++;
+            }
+        }
+
     }
 }
