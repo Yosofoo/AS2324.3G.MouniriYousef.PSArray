@@ -41,6 +41,9 @@
             Console.WriteLine($"Il voto più alto è {max}, in posizione {posMax}, il voto più basso è {min} in posizione {posMin}, la media ponderata di tutti i voti è {mediaPonderata}");
             StampaVotiPesi(voti, pesi, nVoti);
 
+            Console.WriteLine("Inserire un voto per elencare tutti i voti simili(+-0,5)");
+            double votoUtente = Convert.ToDouble(Console.ReadLine());
+
         }
         static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
         {
@@ -98,7 +101,27 @@
         {
             for(int i = 0;i < nVoti;i++)
             {
-                if (voti[i] - 0.5 <)
+                if (voti[i] - 0.5 < votoUtente && voti[i] + 0.5 > votoUtente)
+                {
+                    Console.WriteLine(voti[i] + "       " + pesi[i]);//stampa i voti e pesi alla distanza di 7 spazi
+                }
+            }
+        }
+
+        static void OrdinaPerVoto(ref double[] voti, ref int[] pesi, int nVoti)
+        {
+            double temp;
+            for(int i = 0; i < nVoti - 1; i++)
+            {
+                for (int j = 0; j < nVoti - i - 1; j++)
+                {
+                    if (voti[j] < voti[j + 1])
+                    {
+                        temp = voti[i];
+                        voti[i] = voti[j + 1];
+                        voti[j + 1] = temp;
+                    }
+                }
             }
         }
 
