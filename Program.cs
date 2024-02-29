@@ -38,11 +38,17 @@
 
             Console.WriteLine("Adesso verra calcolata la media ponderata, il voto massimo e la sua posizione e il voto minimo e la sua posizione");
             double mediaPonderata = MediaPonderata(voti, pesi, nVoti,ref max,ref posMax , ref min, ref posMin);
-            Console.WriteLine($"Il voto più alto è {max}, in posizione {posMax}, il voto più basso è {min} in posizione {posMin}, la media ponderata di tutti i voti è {mediaPonderata}");
+            Console.WriteLine($"Il voto più alto è {max}, in posizione {posMax + 1}, il voto più basso è {min} in posizione {posMin + 1}, la media ponderata di tutti i voti è {mediaPonderata}");
             StampaVotiPesi(voti, pesi, nVoti);
 
             Console.WriteLine("Inserire un voto per elencare tutti i voti simili(+-0,5)");
-            double votoUtente = Convert.ToDouble(Console.ReadLine());
+            double voto = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Voti  " + "  Pesi");
+            ElencoVotiNellIntorno(voti, pesi, nVoti, voto);
+
+            Console.WriteLine("Adesso verrà ordinato tutto in base al voto");
+            OrdinaPerVoto(ref voti, ref pesi, nVoti);
+            StampaVotiPesi(voti, pesi, nVoti);
 
         }
         static void StampaVotiPesi(double[] voti, int[] pesi, int nVoti)
@@ -97,11 +103,11 @@
             }
             return numeratore/ sommatoria;
         }
-        static void ElencoVotiNellIntorno(double[] voti, int[] pesi, double votoUtente, int nVoti, int voto)
+        static void ElencoVotiNellIntorno(double[] voti, int[] pesi, int nVoti, double voto)
         {
             for(int i = 0;i < nVoti;i++)
             {
-                if (voti[i] - 0.5 < votoUtente && voti[i] + 0.5 > votoUtente)
+                if (voti[i] - 0.5 < voto && voti[i] + 0.5 > voto)
                 {
                     Console.WriteLine(voti[i] + "       " + pesi[i]);//stampa i voti e pesi alla distanza di 7 spazi
                 }
@@ -110,16 +116,23 @@
 
         static void OrdinaPerVoto(ref double[] voti, ref int[] pesi, int nVoti)
         {
-            double temp;
+            double tempV; //temp per i voti
+            int tempP; //temp per i pesi
             for(int i = 0; i < nVoti - 1; i++)
             {
                 for (int j = 0; j < nVoti - i - 1; j++)
                 {
-                    if (voti[j] < voti[j + 1])
+                    if (voti[j] > voti[j + 1])
                     {
-                        temp = voti[i];
-                        voti[i] = voti[j + 1];
-                        voti[j + 1] = temp;
+                        // Scambio dei voti
+                        double tempVoto = voti[j];
+                        voti[j] = voti[j + 1];
+                        voti[j + 1] = tempVoto;
+
+                        // Scambio dei pesi corrispondenti
+                        int tempPeso = pesi[j];
+                        pesi[j] = pesi[j + 1];
+                        pesi[j + 1] = tempPeso;
                     }
                 }
             }
